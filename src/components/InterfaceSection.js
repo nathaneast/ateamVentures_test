@@ -10,11 +10,23 @@ export default class InterfaceSection {
     this.methodSelectBoxesId = 'method-selectBoxes';
     this.materialSelectBoxesId = 'material-selectBoxes';
 
+    this.toggle = false;
+
     this.section = document.createElement('section');
     this.section.className = 'interface';
     $target.appendChild(this.section);
 
     this.render();
+  }
+
+  setState() {
+    // console.log(
+    //   this.methodSelected,
+    //   this.materialSelected,
+    //   this.toggle,
+    //   'setSelected'
+    // );
+    // state 모아서 카드리스트 렌더
   }
 
   resetFiltering() {
@@ -31,9 +43,8 @@ export default class InterfaceSection {
     } else {
       targetSelected.add(value);
     }
-    console.log(this.methodSelected, this.materialSelected, 'setSelected');
 
-    // 토글 로직도 해야함
+    this.setState();
   }
 
   render() {
@@ -42,11 +53,13 @@ export default class InterfaceSection {
         <h2>들어온 요청</h2>
         <p>파트너님에게 딱 맞는 요청서를 찾아보세요.</p>
       </div>
+      <div class='selectWrapper' />
     `;
 
-    const selectList = document.createElement('section');
+    const selectWrapper = document.querySelector('.selectWrapper');
+    const selectList = document.createElement('article');
     selectList.className = 'selectList';
-    this.section.appendChild(selectList);
+    selectWrapper.appendChild(selectList);
 
     const method = new MultiSelect({
       $target: selectList,
@@ -69,23 +82,43 @@ export default class InterfaceSection {
     });
 
     // 필터링 기능
-    const filtering = document.createElement('div');
+    const filterWrapper = document.createElement('div');
     const filterImg = document.createElement('img');
     const filterSpan = document.createElement('span');
 
-    filtering.className = 'filtering';
+    filterWrapper.className = 'filterWrapper';
 
     filterImg.src = 'src/images/interface_filter_reset.png';
     filterSpan.innerText = '필터링 리셋';
 
-    selectList.appendChild(filtering);
-    filtering.appendChild(filterImg);
-    filtering.appendChild(filterSpan);
+    selectList.appendChild(filterWrapper);
+    filterWrapper.appendChild(filterImg);
+    filterWrapper.appendChild(filterSpan);
 
-    filtering.addEventListener('click', () => {
+    filterWrapper.addEventListener('click', () => {
       this.resetFiltering();
       method.resetCheckBox();
       material.resetCheckBox();
+    });
+
+    // 토글
+    const toggleWrapper = document.createElement('div');
+    selectWrapper.appendChild(toggleWrapper);
+
+    toggleWrapper.innerHTML = `
+      <label class="toggle-switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <span>상담중인 요청만 보기</span>
+    `;
+
+    const toggleSwitch = document.querySelector('.toggle-switch');
+    toggleSwitch.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT') {
+        this.toggle = !this.toggle;
+        this.setState();
+      }
     });
   }
 }
