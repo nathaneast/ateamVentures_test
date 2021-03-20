@@ -2,8 +2,9 @@ body {
   margin: 0px;
 }
 
+/* header */
 #header {
-  background: #1565C0;
+  background: #1565c0;
   box-shadow: 0px 0px 2px rgb(0 0 0 / 12%), 0px 2px 2px rgb(0 0 0 / 24%);
   height: 50px;
   display: flex;
@@ -16,6 +17,7 @@ body {
   padding-left: 30px;
 }
 
+/* navBar */
 .navBar {
   display: flex;
   padding-right: 20px;
@@ -27,6 +29,47 @@ body {
   color: white;
 }
 
+/* interface */
+.selectList {
+  display: flex;
+}
+
+/* select */
+.multiSelect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+.checkboxes label {
+  display: block;
+}
+
+.checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+/* card */
 .cardList {
   display: grid;
   justify-content: center;
@@ -35,7 +78,7 @@ body {
 
 .card {
   /* height: 356px; */
-  border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
@@ -49,9 +92,9 @@ body {
 }
 
 .card-counseling {
-  color: #FFA000;
+  color: #ffa000;
   padding: 3px 8px;
-  border: 1px solid #FFA000;
+  border: 1px solid #ffa000;
   border-radius: 15px;
   font-weight: 500;
 }
@@ -59,7 +102,7 @@ body {
 .card-due {
   color: gray;
   padding-bottom: 10px;
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .card-info {
@@ -84,7 +127,7 @@ body {
 
 .card-button-more {
   padding: 8px 12px;
-  background: #2196F3;
+  background: #2196f3;
   color: white;
   border-radius: 4px;
   border: none;
@@ -94,9 +137,9 @@ body {
 
 .card-button-chat {
   padding: 8px 12px;
-  color: #2196F3;
+  color: #2196f3;
   border-radius: 4px;
-  border: 1px solid #2196F3;
+  border: 1px solid #2196f3;
   font-weight: bolder;
   background-color: white;
 }
@@ -115,4 +158,3 @@ body {
   margin: 0px;
   font-size: 15px;
 }
-

@@ -11,7 +11,7 @@ export default class Card {
     method,
     status,
     title,
-    cardNum
+    cardNum,
   }) {
     this.amount = amount;
     this.client = client;
@@ -22,7 +22,7 @@ export default class Card {
     this.status = status;
     this.title = title;
     this.cardNum = cardNum;
-    
+
     this.card = document.createElement('article');
     this.card.className = 'card';
     $target.appendChild(this.card);
@@ -30,19 +30,16 @@ export default class Card {
     this.render();
   }
 
-  // ${this.status === '상담중' ? displayCardStatus(`card-title-row-${this.cardNum}`) : ''}
-
   render() {
     this.card.innerHTML = `
       <div class='card-header'>
-        <div class='card-title-row card-title-row-${this.cardNum}'>
+        <div class='card-title-row' id='card-title-row-${this.cardNum}'>
           <div>
-            <h2 class='card-title'>${this.title}</h2>
+            <h3 class='card-title'>${this.title}</h3>
           </div>
-          ${this.status === '상담중' ? displayCardStatus(document.querySelector(`.card-title-row-${this.cardNum}`)) : ''}
         </div>
         <div>
-          <h3 class='card-client'>${this.client}</h3>
+          <h4 class='card-client'>${this.client}</h4>
         </div>
       </div>
 
@@ -74,5 +71,9 @@ export default class Card {
         <input type='button' class='card-button-chat' value='채팅하기' />
       </div>
     `;
+
+    if (this.status === '상담중') {
+      displayCardStatus(`card-title-row-${this.cardNum}`);
+    }
   }
 }

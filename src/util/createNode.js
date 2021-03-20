@@ -1,23 +1,12 @@
-export const displayCardStatus = (domEle) => {
-  // const target = document.querySelector(`.${className}`);
-  // const target = document.querySelector(`.${className}`);
+export const displayCardStatus = (targetId) => {
+  const target = document.querySelector(`#${targetId}`);
 
-  console.log(domEle)
+  const div = document.createElement('div');
+  div.className = 'card-counseling';
 
-    // const div = document.createElement('div');
-    // div.className = 'card-counseling';
+  const span = document.createElement('span');
+  span.innerText = '상담중';
 
-    // const span = document.createElement('span');
-    // span.innerText = '상담중';
-
-    // target.appendChild(div);
-    // div.appendChild(span);
-
-    return '';
-}
-
-  // ${this.status ? (
-//   <div class='card-counseling'>
-//     <span>상담중</span>
-//   </div>
-// ): ''}
+  target.appendChild(div);
+  div.appendChild(span);
+};
