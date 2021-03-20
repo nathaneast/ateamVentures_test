@@ -26,3 +26,93 @@ body {
   padding-right: 10px;
   color: white;
 }
+
+.cardList {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, 366px);
+}
+
+.card {
+  /* height: 356px; */
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 7px;
+  padding: 12px;
+}
+
+.card-header {
+  margin-bottom: 20px;
+}
+
+.card-counseling {
+  color: #FFA000;
+  padding: 3px 8px;
+  border: 1px solid #FFA000;
+  border-radius: 15px;
+  font-weight: 500;
+}
+
+.card-due {
+  color: gray;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.card-info {
+  margin: 30px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-info-row {
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.card-info-value {
+  font-weight: bolder;
+}
+
+.card-buttons {
+  margin-bottom: 10px;
+}
+
+.card-button-more {
+  padding: 8px 12px;
+  background: #2196F3;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  font-weight: bolder;
+  margin-right: 3px;
+}
+
+.card-button-chat {
+  padding: 8px 12px;
+  color: #2196F3;
+  border-radius: 4px;
+  border: 1px solid #2196F3;
+  font-weight: bolder;
+  background-color: white;
+}
+
+.card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 16px;
+}
+
+.card-client {
+  margin: 0px;
+  font-size: 15px;
+}
+

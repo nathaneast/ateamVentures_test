@@ -1,3 +1,5 @@
+import { displayCardStatus } from '../util/createNode.js';
+
 export default class Card {
   constructor({
     $target,
@@ -9,6 +11,7 @@ export default class Card {
     method,
     status,
     title,
+    cardNum
   }) {
     this.amount = amount;
     this.client = client;
@@ -18,43 +21,57 @@ export default class Card {
     this.method = method;
     this.status = status;
     this.title = title;
-
+    this.cardNum = cardNum;
+    
     this.card = document.createElement('article');
+    this.card.className = 'card';
     $target.appendChild(this.card);
 
     this.render();
   }
 
+  // ${this.status === '상담중' ? displayCardStatus(`card-title-row-${this.cardNum}`) : ''}
+
   render() {
     this.card.innerHTML = `
-      <div>
-        <h2>${this.title}</h2>
-        <h3>${this.client}</h3>
+      <div class='card-header'>
+        <div class='card-title-row card-title-row-${this.cardNum}'>
+          <div>
+            <h2 class='card-title'>${this.title}</h2>
+          </div>
+          ${this.status === '상담중' ? displayCardStatus(document.querySelector(`.card-title-row-${this.cardNum}`)) : ''}
+        </div>
+        <div>
+          <h3 class='card-client'>${this.client}</h3>
+        </div>
       </div>
-      <div>
+
+      <div class='card-due'>
         <span>${this.due}까지 납기</span>
       </div>
-      <div>
-        <div>
+
+      <div class='card-info'>
+        <div class='card-info-row'>
           <span>도면개수</span>
-          <span>${this.count}개</span>
+          <span class='card-info-value'>${this.count}개</span>
         </div>
-        <div>
+        <div class='card-info-row'>
           <span>총수량</span>
-          <span>${this.amount}개</span>
+          <span class='card-info-value'>${this.amount}개</span>
         </div>
-        <div>
+        <div class='card-info-row'>
           <span>가공방식</span>
-          <span>${this.method.join(',')}</span>
+          <span class='card-info-value'>${this.method.join(',')}</span>
         </div>
-        <div>
+        <div class='card-info-row'>
           <span>재료</span>
-          <span>${this.material.join(',')}</span>
+          <span class='card-info-value'>${this.material.join(',')}</span>
         </div>
       </div>
-      <div>
-        <button>요청 내역보기</button>
-        <button>채팅하기</button>
+
+      <div class='card-buttons'>
+        <input type='button' class='card-button-more' value='요청 내역보기' />
+        <input type='button' class='card-button-chat' value='채팅하기' />
       </div>
     `;
   }

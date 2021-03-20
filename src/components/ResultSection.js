@@ -61,7 +61,7 @@ export default class ResultSection {
         this.section.appendChild(cardList);
 
         this.renderData.map(
-          (item) =>
+          (item, index) =>
             new Card({
               $target: cardList,
               key: item.id,
@@ -73,6 +73,7 @@ export default class ResultSection {
               material: item.material,
               method: item.method,
               status: item.status,
+              cardNum: index + 1
             })
         );
       } else {
