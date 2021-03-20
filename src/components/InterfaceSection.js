@@ -1,7 +1,8 @@
 import MultiSelect from './MultiSelect.js';
 
 export default class InterfaceSection {
-  constructor({ $target }) {
+  constructor({ $target, onFilter }) {
+    this.onFilter = onFilter;
     this.methodSelected = new Set([]);
     this.materialSelected = new Set([]);
 
@@ -19,16 +20,6 @@ export default class InterfaceSection {
     this.render();
   }
 
-  setState() {
-    // console.log(
-    //   this.methodSelected,
-    //   this.materialSelected,
-    //   this.toggle,
-    //   'setSelected'
-    // );
-    // state 모아서 카드리스트 렌더
-  }
-
   resetFiltering() {
     this.methodSelected.clear();
     this.materialSelected.clear();
@@ -44,7 +35,7 @@ export default class InterfaceSection {
       targetSelected.add(value);
     }
 
-    this.setState();
+    this.onFilter(this.methodSelected, this.materialSelected, this.toggle);
   }
 
   render() {
@@ -117,7 +108,7 @@ export default class InterfaceSection {
     toggleSwitch.addEventListener('click', (e) => {
       if (e.target.tagName === 'INPUT') {
         this.toggle = !this.toggle;
-        this.setState();
+        this.onFilter(this.methodSelected, this.materialSelected, this.toggle);
       }
     });
   }

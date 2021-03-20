@@ -11,14 +11,15 @@ export default class App {
 
     const interfaceSection = new InterfaceSection({
       $target,
-      // resultSection.setState (셀렉, 토글 값)
+      onFilter: (methodSelected, materialSelected, isToggle) => {
+        resultSection.setState(methodSelected, materialSelected, isToggle);
+      },
     });
 
     const resultSection = new ResultSection({
       $target,
     });
-    
-    // navSideBar
 
+    // navSideBar
   }
 }
