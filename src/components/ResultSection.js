@@ -13,7 +13,6 @@ export default class ResultSection {
 
     const fetchData = async () => await api.fetchSampleData();
     fetchData().then((res) => {
-      // console.log(res);
       if (res.isError) {
         this.error = {
           message: res.data.message,
