@@ -20,7 +20,7 @@ export default class InterfaceSection {
     this.render();
   }
 
-  resetFiltering() {
+  resetSelected() {
     this.methodSelected.clear();
     this.materialSelected.clear();
   }
@@ -72,7 +72,7 @@ export default class InterfaceSection {
       checkBoxesId: this.materialCheckBoxesId,
     });
 
-    // 필터링 기능
+    // 필터링 리셋
     const filterWrapper = document.createElement('div');
     const filterImg = document.createElement('img');
     const filterSpan = document.createElement('span');
@@ -87,9 +87,10 @@ export default class InterfaceSection {
     filterWrapper.appendChild(filterSpan);
 
     filterWrapper.addEventListener('click', () => {
-      this.resetFiltering();
+      this.resetSelected();
       method.resetCheckBox();
       material.resetCheckBox();
+      this.onFilter(this.methodSelected, this.materialSelected, this.toggle);
     });
 
     // 토글

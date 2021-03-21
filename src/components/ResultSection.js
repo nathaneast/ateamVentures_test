@@ -34,36 +34,38 @@ export default class ResultSection {
 
   setState(methodSelected, materialSelected, isToggle) {
     const allSelected = [...methodSelected, ...materialSelected];
-    let result;
+    let filterResult;
 
-    const filterResult = this.originalData.filter((item) => {
-      const values = [...item.method, ...item.material];
-      let isIncludeItem = false;
+    if (allSelected.length) {
+      filterResult = this.originalData.filter((item) => {
+        const values = [...item.method, ...item.material];
+        let isReturn = false;
 
-      for (let i = 0; i < allSelected.length; i++) {
-        const isInclude = values.includes((v) => allSelected[i]);
-        if (isInclude) {
-          isIncludeItem = true;
-          break;
+        for (let i = 0; i < values.length; i++) {
+          let isInclude = allSelected.includes(values[i]);
+          if (isInclude) {
+            isReturn = true;
+            break;
+          }
         }
-      }
 
-      if (isIncludeItem) {
-        return item;
-      }
-    });
+        if (isReturn) {
+          return item;
+        }
+      });
+    } else {
+      filterResult = this.originalData;
+    }
 
-    console.log(filterResult);
+    if (isToggle) {
+      this.renderData = filterResult.filter((item) => item.status === '상담중');
+    } else {
+      this.renderData = filterResult;
+    }
 
-    // if (isToggle) {
-    //   let resultData;
-    //   resultData = this.originalData.filter(
-    //     (item) => item.status === '상담중'
-    //   );
-    // }
+    this.render();
   }
 
-  //TODO: 에러, 로딩, 없는글 컴포넌트로 빼기
   displayError() {
     this.section.innerHTML = `
     <div>
