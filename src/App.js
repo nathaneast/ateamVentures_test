@@ -6,7 +6,7 @@ export default class App {
   constructor($target) {
     const header = new Header({
       $target,
-      // 모바일시 메뉴 클릭시 navSideBar 보이기
+      // 모바일에서 메뉴 클릭시 navSideBar 보이기
     });
 
     const interfaceSection = new InterfaceSection({

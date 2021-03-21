@@ -1,5 +1,7 @@
 import { api } from '../api/sampleDataAPI.js';
 import Card from './Card.js';
+import Loader from './Loader.js';
+import EmptyResultCard from './EmptyResultCard.js';
 
 export default class ResultSection {
   constructor({ $target }) {
@@ -75,20 +77,25 @@ export default class ResultSection {
   `;
   }
 
-  displayLoading() {
-    this.section.innerHTML = `
-      <div>Loading...</div>
-    `;
-  }
-
   render() {
     if (this.isLoading) {
-      this.displayLoading();
+      new Loader({
+        $target: this.section,
+      });
     } else {
-      if (this.error) return this.displayError();
+      if (this.error) {
+        this.section.innerHTML = ``;
+
+        return new Error({
+          $target: this.section,
+          message: this.error.message,
+          status: this.error.status,
+        });
+      }
 
       if (this.renderData.length) {
         this.section.innerHTML = ``;
+
         const cardList = document.createElement('section');
         cardList.className = 'cardList';
         this.section.appendChild(cardList);
@@ -110,9 +117,11 @@ export default class ResultSection {
             })
         );
       } else {
-        this.section.innerHTML = `
-          <div>조건에 맞는 요청 없다</div>
-        `;
+        this.section.innerHTML = ``;
+
+        new EmptyResultCard({
+          $target: this.section,
+        });
       }
     }
   }
