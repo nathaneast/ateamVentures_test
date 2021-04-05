@@ -29,14 +29,28 @@ body {
   color: white;
 }
 
+/* contents */
+#contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* interface */
+.selectController {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
 .selectList {
   display: flex;
+  width: 320px;
 }
 
 /* select */
 .multiSelect {
-  width: 200px;
+  flex-grow: 1;
 }
 
 .selectBox {
@@ -44,7 +58,7 @@ body {
 }
 
 .selectBox select {
-  width: 100%;
+  padding: 5px 20px 5px 5px;
   font-weight: bold;
 }
 
@@ -69,22 +83,31 @@ body {
   background-color: #1e90ff;
 }
 
+/* filter */
+.filter {
+  flex-grow: 3;
+  text-align: center;
+}
+
+/* result */
+.result {
+  padding: 20px 0px;
+}
+
 /* card */
 .cardList {
   display: grid;
-  justify-content: center;
+  grid-gap: 15px;
   grid-template-columns: repeat(3, 366px);
 }
 
-.card {
-  /* height: 356px; */
+.cardWrapper {
   border: 1px solid #e5e5e5;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 7px;
-  padding: 12px;
+  padding-left: 15px;
 }
 
 .card-header {

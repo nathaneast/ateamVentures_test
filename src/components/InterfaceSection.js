@@ -2,6 +2,8 @@ import MultiSelect from './MultiSelect.js';
 
 export default class InterfaceSection {
   constructor({ $target, onFilter }) {
+    console.log($target, 'InterfaceSection $target')
+
     this.onFilter = onFilter;
     this.methodSelected = new Set([]);
     this.materialSelected = new Set([]);
@@ -44,13 +46,13 @@ export default class InterfaceSection {
         <h2>들어온 요청</h2>
         <p>파트너님에게 딱 맞는 요청서를 찾아보세요.</p>
       </div>
-      <div class='selectWrapper' />
+      <div class='selectController' />
     `;
 
-    const selectWrapper = document.querySelector('.selectWrapper');
+    const selectController = document.querySelector('.selectController');
     const selectList = document.createElement('article');
     selectList.className = 'selectList';
-    selectWrapper.appendChild(selectList);
+    selectController.appendChild(selectList);
 
     const method = new MultiSelect({
       $target: selectList,
@@ -73,20 +75,20 @@ export default class InterfaceSection {
     });
 
     // 필터링 리셋
-    const filterWrapper = document.createElement('div');
+    const filter = document.createElement('div');
     const filterImg = document.createElement('img');
     const filterSpan = document.createElement('span');
 
-    filterWrapper.className = 'filterWrapper';
+    filter.className = 'filter';
 
     filterImg.src = 'src/images/interface_filter_reset.png';
     filterSpan.innerText = '필터링 리셋';
 
-    selectList.appendChild(filterWrapper);
-    filterWrapper.appendChild(filterImg);
-    filterWrapper.appendChild(filterSpan);
+    selectList.appendChild(filter);
+    filter.appendChild(filterImg);
+    filter.appendChild(filterSpan);
 
-    filterWrapper.addEventListener('click', () => {
+    filter.addEventListener('click', () => {
       this.resetSelected();
       method.resetCheckBox();
       material.resetCheckBox();
@@ -95,7 +97,7 @@ export default class InterfaceSection {
 
     // 토글
     const toggleWrapper = document.createElement('div');
-    selectWrapper.appendChild(toggleWrapper);
+    selectController.appendChild(toggleWrapper);
 
     toggleWrapper.innerHTML = `
       <label class="toggle-switch">

@@ -23,15 +23,19 @@ export default class Card {
     this.title = title;
     this.cardNum = cardNum;
 
-    this.card = document.createElement('article');
-    this.card.className = 'card';
-    $target.appendChild(this.card);
+    const card = document.createElement('article');
+    card.className = 'card';
+    $target.appendChild(card);
+
+    this.cardWrapper = document.createElement('div');
+    this.cardWrapper.className = 'cardWrapper';
+    card.appendChild(this.cardWrapper);
 
     this.render();
   }
 
   render() {
-    this.card.innerHTML = `
+    this.cardWrapper.innerHTML = `
       <div class='card-header'>
         <div class='card-title-row' id='card-title-row-${this.cardNum}'>
           <div>
